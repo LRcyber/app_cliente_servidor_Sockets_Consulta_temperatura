@@ -1,0 +1,38 @@
+Requisitos Mínimos de Funcionamento
+Conectividade: A aplicação precisa de uma rede local ou internet com portas de comunicação liberadas para que o servidor e o cliente estabeleçam conexão TCP.
+Compatibilidade de SO: O software deverá rodar em sistemas operacionais que suportem Python ou outra linguagem escolhida para o desenvolvimento.
+Dependências: O software precisa de bibliotecas padrão para implementação de sockets em Python (e.g., socket), além de privilégios para abrir e escutar portas no servidor.
+Protocolo da Camada de Aplicação
+Vamos definir um protocolo simples para a troca de mensagens entre cliente e servidor:
+
+Eventos do Protocolo
+Solicitação de Temperatura: O cliente envia uma mensagem ao servidor para obter a temperatura de uma cidade específica.
+Resposta de Temperatura: O servidor responde ao cliente com a temperatura atual da cidade solicitada.
+Desconexão: O cliente envia uma solicitação de desconexão ao servidor quando finaliza o uso da aplicação.
+Estrutura das Mensagens
+Mensagem de Solicitação:
+Formato: REQ_TEMP:<nome_da_cidade>
+Exemplo: REQ_TEMP:Sao_Paulo
+Mensagem de Resposta:
+Formato: RESP_TEMP:<nome_da_cidade>:
+Exemplo: RESP_TEMP:Sao_Paulo:25.6
+Mensagem de Desconexão:
+Formato: QUIT
+Descrição: Quando o cliente quer encerrar a conexão, e envia a mensagem QUIT ao servidor, que então fecha a conexão.
+Estados do Protocolo
+Conexão:
+Estado inicial onde o cliente e o servidor estabelecem uma conexão.
+Comunicação:
+Estado de troca de mensagens de solicitação e resposta.
+Desconexão:
+Estado final onde o cliente decide encerrar a sessão, e o servidor fecha a conexão.
+Funcionamento
+Cliente:
+Inicializa a conexão TCP com o servidor.
+Envia uma solicitação de temperatura para a cidade desejada.
+Aguarda a resposta do servidor e exibe os dados ao usuário.
+Envia uma mensagem de desconexão (QUIT) quando finaliza a consulta.
+Servidor:
+Escuta na porta TCP configurada para receber conexões de clientes.
+Ao receber uma solicitação de temperatura, consulta o banco de dados de temperaturas (ou gera um valor simulado) e envia a resposta ao cliente.
+Fecha a conexão quando o cliente envia a mensagem de desconexão.
