@@ -1,0 +1,1 @@
+# app_cliente_servidor_Sockets_Consulta_temperatura
